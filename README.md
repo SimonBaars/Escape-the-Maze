@@ -1,4 +1,4 @@
-# Escape-the-Maze
+# Escape the Maze
 Maze Runner inspired Android Game by Simon Baars
 
 Escape the Maze is a running game where you are dropped in a grass field in the middle of a huge maze. But not only that: you're alone! Figure out how the maze works and try to escape. But watch out... Monsters are out there! And no-one has ever survived a night in the maze...
