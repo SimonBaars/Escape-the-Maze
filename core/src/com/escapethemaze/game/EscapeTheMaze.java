@@ -26,79 +26,79 @@ import com.escapethemaze.game.pathfinding.Pathfinder;
 import com.escapethemaze.game.pathfinding.Node;
 
 public class EscapeTheMaze extends ApplicationAdapter {
-    SpriteBatch batch;
-    OrthographicCamera camera;
-    Viewport viewport;
-    BitmapFont font;
+    public SpriteBatch batch;
+    public OrthographicCamera camera;
+    public Viewport viewport;
+    public BitmapFont font;
     
     // Game constants
-    int dayLength = 30 * 200;
-    int amountOfBots = 5;
-    int numOfColumns = 50;
-    int tileSize;
-    int gladeSize = 4;
-    float camx = -300, camy = -300;
-    int borderSize = 3;
-    boolean night;
-    int targetNode = 0;
-    int daytime;
-    int vision;
-    int scherm = 10; // screen/menu state
-    int day = 1;
-    boolean canMove = true;
-    boolean notDrawn;
-    byte[] wallTypes;
-    int[] playerNodes = new int[2];
-    int chestSpawnRate = 80;
-    float grieverDamage = 1;
-    int maxFood;
-    int buttonSize;
-    boolean canPress = true;
-    boolean sprintingMode = false;
-    String playerName = "Unknown Name";
-    int isLoading = 0;
+    public int dayLength = 30 * 200;
+    public int amountOfBots = 5;
+    public int numOfColumns = 50;
+    public int tileSize;
+    public int gladeSize = 4;
+    public float camx = -300, camy = -300;
+    public int borderSize = 3;
+    public boolean night;
+    public int targetNode = 0;
+    public int daytime;
+    public int vision;
+    public int scherm = 10; // screen/menu state
+    public int day = 1;
+    public boolean canMove = true;
+    public boolean notDrawn;
+    public byte[] wallTypes;
+    public int[] playerNodes = new int[2];
+    public int chestSpawnRate = 80;
+    public float grieverDamage = 1;
+    public int maxFood;
+    public int buttonSize;
+    public boolean canPress = true;
+    public boolean sprintingMode = false;
+    public String playerName = "Unknown Name";
+    public int isLoading = 0;
     
     // Game entities
-    ArrayList<Node> gladeNodes = new ArrayList<Node>();
-    ArrayList<Tree> trees = new ArrayList<Tree>();
-    ArrayList<Wood> woodBlocks = new ArrayList<Wood>();
-    ArrayList<Pig> pigs = new ArrayList<Pig>();
-    ArrayList<Trap> traps = new ArrayList<Trap>();
+    public ArrayList<Node> gladeNodes = new ArrayList<Node>();
+    public ArrayList<Tree> trees = new ArrayList<Tree>();
+    public ArrayList<Wood> woodBlocks = new ArrayList<Wood>();
+    public ArrayList<Pig> pigs = new ArrayList<Pig>();
+    public ArrayList<Trap> traps = new ArrayList<Trap>();
     
-    Poort[][] poorten;
-    Node[][] nodeRegister;
-    Lijn[] lijnen = new Lijn[0];
-    Node[] bots;
-    Player player;
-    Farmland farmland;
-    Pathfinder bfs;
-    BotSpawner botSpawner = new BotSpawner();
+    public Poort[][] poorten;
+    public Node[][] nodeRegister;
+    public Lijn[] lijnen = new Lijn[0];
+    public Node[] bots;
+    public Player player;
+    public Farmland farmland;
+    public Pathfinder bfs;
+    public BotSpawner botSpawner = new BotSpawner();
     
     // Graphics resources
-    Texture[][] pigImage = new Texture[4][4];
-    Texture[][] playerImages = new Texture[4][4];
-    Texture[] treeImages = new Texture[3];
-    Texture[] fireImages = new Texture[5];
-    Texture[] wallImages = new Texture[3];
-    Texture[] craftingTable = new Texture[4];
-    Texture[] buttonImage = new Texture[13];
-    Texture[] textImage = new Texture[3];
-    Texture[] pressButtons = new Texture[11];
-    Texture grassImage;
-    Texture chestImage;
-    Texture mapBg;
-    Texture trapImage;
-    Texture mineImage;
+    public Texture[][] pigImage = new Texture[4][4];
+    public Texture[][] playerImages = new Texture[4][4];
+    public Texture[] treeImages = new Texture[3];
+    public Texture[] fireImages = new Texture[5];
+    public Texture[] wallImages = new Texture[3];
+    public Texture[] craftingTable = new Texture[4];
+    public Texture[] buttonImage = new Texture[13];
+    public Texture[] textImage = new Texture[3];
+    public Texture[] pressButtons = new Texture[11];
+    public Texture grassImage;
+    public Texture chestImage;
+    public Texture mapBg;
+    public Texture trapImage;
+    public Texture mineImage;
     
     // Audio resources
-    Music grassMusic;
-    Music nightMusic;
-    Music mazeMusic;
-    Music introMusic;
-    Sound clickSound;
-    Sound fireSound;
+    public Music grassMusic;
+    public Music nightMusic;
+    public Music mazeMusic;
+    public Music introMusic;
+    public Sound clickSound;
+    public Sound fireSound;
     
-    Random random = new Random();
+    public Random random = new Random();
     
     @Override
     public void create() {
