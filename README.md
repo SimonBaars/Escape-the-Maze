@@ -2,6 +2,7 @@
 Maze Runner inspired Android Game by Simon Baars
 
 Escape the Maze is a running game where you are dropped in a grass field in the middle of a huge maze. But not only that: you're alone! Figure out how the maze works and try to escape. But watch out... Monsters are out there! And no-one has ever survived a night in the maze...
+
 In this app you actually have to discover the secrets of this game. Escape the Maze has a lot of important features, which make the game as realistic as possible:
 - A day/night cycle: keep track of where you go in the maze as a night in the maze is hard to survive...
 - The struggle to to gather food: you gotta make all the food on your own, one wrong decision and you might starve...
@@ -9,6 +10,32 @@ In this app you actually have to discover the secrets of this game. Escape the M
 - A lot of items to help you unravel the mysteries of the maze
 
 Also, I made this app completely free! No in-app payments, no ads, no tracking stuff, nothing!
+
+## Building
+
+This project uses LibGDX framework and Gradle build system.
+
+### Prerequisites
+- JDK 11 or higher
+- Android SDK (for Android builds)
+
+### Build Commands
+
+**Debug APK:**
+```bash
+./gradlew android:assembleDebug
+```
+
+**Release APK:**
+```bash
+./gradlew android:assembleRelease
+```
+
+The built APK files will be in `android/build/outputs/apk/`.
+
+### CI/CD
+
+The project includes a GitHub Actions workflow that automatically builds the Android APK on every push to master/main branch. Built APKs are available as artifacts in the Actions tab.
 
 Currently known bugs/issues:
 - Pigs can get trapped in wood blocks
