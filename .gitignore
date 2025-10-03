@@ -38,3 +38,36 @@ captures/
 
 # Keystore files
 *.jks
+
+# LibGDX
+libs/
+android/libs/armeabi-v7a/
+android/libs/arm64-v8a/
+android/libs/x86/
+android/libs/x86_64/
+
+# Gradle Wrapper
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Gradle
+.gradle
+build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# NetBeans
+nbproject/
+
+# OS
+.DS_Store
+Thumbs.db
