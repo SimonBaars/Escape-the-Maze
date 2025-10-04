@@ -1,6 +1,6 @@
 android {
     namespace "com.escapethemaze.android"
-    compileSdk androidVersion
+    compileSdk rootProject.ext.androidVersion.toInteger()
     
     sourceSets {
         main {
@@ -22,8 +22,8 @@ android {
     
     defaultConfig {
         applicationId "com.escapethemaze.android"
-        minSdk androidMinSdkVersion
-        targetSdk androidTargetSdkVersion
+        minSdk rootProject.ext.androidMinSdkVersion
+        targetSdk rootProject.ext.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -96,4 +96,4 @@ task run(type: Exec) {
     commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.escapethemaze.android/com.escapethemaze.android.AndroidLauncher'
 }
 
-eclipse.project.name = appName + "-android"
+eclipse.project.name = rootProject.ext.appName + "-android"
