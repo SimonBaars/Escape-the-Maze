@@ -96,4 +96,6 @@ task run(type: Exec) {
     commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.escapethemaze.android/com.escapethemaze.android.AndroidLauncher'
 }
 
+apply plugin: "eclipse"
+
 eclipse.project.name = rootProject.ext.appName + "-android"
