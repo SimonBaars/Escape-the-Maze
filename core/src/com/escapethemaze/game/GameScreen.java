@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
@@ -115,15 +116,15 @@ public class GameScreen implements Disposable {
         
         // Draw title
         String title = "ESCAPE THE MAZE";
-        float titleWidth = 400; // Approximate width for centering
-        float titleX = (Gdx.graphics.getWidth() - titleWidth) / 2;
+        GlyphLayout titleLayout = new GlyphLayout(font, title);
+        float titleX = (Gdx.graphics.getWidth() - titleLayout.width) / 2;
         float titleY = Gdx.graphics.getHeight() / 2 + 100;
         font.draw(batch, title, titleX, titleY);
         
         // Draw instructions
         String instructions = "Press ENTER or TOUCH to start";
-        float instructionsWidth = 600; // Approximate width for centering
-        float instructionsX = (Gdx.graphics.getWidth() - instructionsWidth) / 2;
+        GlyphLayout instructionsLayout = new GlyphLayout(font, instructions);
+        float instructionsX = (Gdx.graphics.getWidth() - instructionsLayout.width) / 2;
         float instructionsY = Gdx.graphics.getHeight() / 2 - 50;
         font.draw(batch, instructions, instructionsX, instructionsY);
         
@@ -300,15 +301,15 @@ public class GameScreen implements Disposable {
         
         // Draw game over text
         String gameOver = "GAME OVER";
-        float gameOverWidth = 250; // Approximate width for centering
-        float gameOverX = (Gdx.graphics.getWidth() - gameOverWidth) / 2;
+        GlyphLayout gameOverLayout = new GlyphLayout(font, gameOver);
+        float gameOverX = (Gdx.graphics.getWidth() - gameOverLayout.width) / 2;
         float gameOverY = Gdx.graphics.getHeight() / 2 + 100;
         font.draw(batch, gameOver, gameOverX, gameOverY);
         
         // Draw instructions
         String instructions = "Press ENTER or TOUCH to return to menu";
-        float instructionsWidth = 700; // Approximate width for centering
-        float instructionsX = (Gdx.graphics.getWidth() - instructionsWidth) / 2;
+        GlyphLayout instructionsLayout = new GlyphLayout(font, instructions);
+        float instructionsX = (Gdx.graphics.getWidth() - instructionsLayout.width) / 2;
         float instructionsY = Gdx.graphics.getHeight() / 2 - 50;
         font.draw(batch, instructions, instructionsX, instructionsY);
         
