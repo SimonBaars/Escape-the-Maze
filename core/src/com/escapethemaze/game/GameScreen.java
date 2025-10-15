@@ -3,6 +3,8 @@ package com.escapethemaze.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
@@ -14,6 +16,11 @@ import java.util.List;
 public class GameScreen implements Disposable {
     private EscapeTheMazeGame game;
     private ShapeRenderer shapeRenderer;
+    private BitmapFont font;
+    private GlyphLayout menuTitleLayout;
+    private GlyphLayout menuInstructionsLayout;
+    private GlyphLayout gameOverLayout;
+    private GlyphLayout gameOverInstructionsLayout;
     
     // Game state
     private int screen = 10; // 10 = menu, 1 = game, 2 = game over, etc.
@@ -46,6 +53,16 @@ public class GameScreen implements Disposable {
     public GameScreen(EscapeTheMazeGame game) {
         this.game = game;
         this.shapeRenderer = new ShapeRenderer();
+        this.font = new BitmapFont();
+        this.font.setColor(Color.WHITE);
+        this.font.getData().setScale(2.0f);
+        
+        // Pre-calculate text layouts for menu and game over screens
+        this.menuTitleLayout = new GlyphLayout(font, "ESCAPE THE MAZE");
+        this.menuInstructionsLayout = new GlyphLayout(font, "Press ENTER or TOUCH to start");
+        this.gameOverLayout = new GlyphLayout(font, "GAME OVER");
+        this.gameOverInstructionsLayout = new GlyphLayout(font, "Press ENTER or TOUCH to return to menu");
+        
         this.pigs = new ArrayList<>();
         this.trees = new ArrayList<>();
         this.woodBlocks = new ArrayList<>();
@@ -107,8 +124,17 @@ public class GameScreen implements Disposable {
     
     private void renderMenu(SpriteBatch batch) {
         batch.begin();
-        // Simple menu rendering
-        // TODO: Add proper menu graphics
+        
+        // Draw title
+        float titleX = (Gdx.graphics.getWidth() - menuTitleLayout.width) / 2;
+        float titleY = Gdx.graphics.getHeight() / 2 + 100;
+        font.draw(batch, "ESCAPE THE MAZE", titleX, titleY);
+        
+        // Draw instructions
+        float instructionsX = (Gdx.graphics.getWidth() - menuInstructionsLayout.width) / 2;
+        float instructionsY = Gdx.graphics.getHeight() / 2 - 50;
+        font.draw(batch, "Press ENTER or TOUCH to start", instructionsX, instructionsY);
+        
         batch.end();
     }
     
@@ -279,8 +305,17 @@ public class GameScreen implements Disposable {
     
     private void renderGameOver(SpriteBatch batch) {
         batch.begin();
-        // Simple game over screen
-        // TODO: Add proper game over graphics
+        
+        // Draw game over text
+        float gameOverX = (Gdx.graphics.getWidth() - gameOverLayout.width) / 2;
+        float gameOverY = Gdx.graphics.getHeight() / 2 + 100;
+        font.draw(batch, "GAME OVER", gameOverX, gameOverY);
+        
+        // Draw instructions
+        float instructionsX = (Gdx.graphics.getWidth() - gameOverInstructionsLayout.width) / 2;
+        float instructionsY = Gdx.graphics.getHeight() / 2 - 50;
+        font.draw(batch, "Press ENTER or TOUCH to return to menu", instructionsX, instructionsY);
+        
         batch.end();
     }
     
@@ -294,6 +329,9 @@ public class GameScreen implements Disposable {
     public void dispose() {
         if (shapeRenderer != null) {
             shapeRenderer.dispose();
+        }
+        if (font != null) {
+            font.dispose();
         }
         if (audioManager != null) {
             audioManager.dispose();
