@@ -10,6 +10,7 @@ public class Player {
     public float x, y;
     public int size;
     public float health = 100;
+    public float maxHealth = 100;
     public float currentFood;
     public int maxFood = 12000; // dayLength * 2
     
