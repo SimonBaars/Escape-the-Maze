@@ -30,3 +30,18 @@ The project has been properly migrated to LibGDX:
 
 ## Result
 The Android module now only contains the proper LibGDX launcher that references the game implementation in the core module. All compilation errors related to missing Processing classes have been resolved.
+
+## Gradle 8.4 Update
+
+### Changes
+- Gradle version: 8.4 (configured in `gradle/wrapper/gradle-wrapper.properties`)
+- Android Gradle Plugin: 8.2.2 (updated from 8.1.1 for optimal Gradle 8.4 compatibility)
+- Build configuration verified compatible with Gradle 8.4
+
+### Compatibility
+- Java 17 is used (required for AGP 8.x)
+- LibGDX 1.12.1 is compatible with Gradle 8.4
+- AGP 8.2.2 is specifically tested with Gradle 8.4+
+
+### Testing
+The build system is now ready to compile with Gradle 8.4. The previous compilation errors were due to legacy Processing files, which have been removed.
