@@ -17,6 +17,10 @@ public class GameScreen implements Disposable {
     private EscapeTheMazeGame game;
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
+    private GlyphLayout menuTitleLayout;
+    private GlyphLayout menuInstructionsLayout;
+    private GlyphLayout gameOverLayout;
+    private GlyphLayout gameOverInstructionsLayout;
     
     // Game state
     private int screen = 10; // 10 = menu, 1 = game, 2 = game over, etc.
@@ -52,6 +56,13 @@ public class GameScreen implements Disposable {
         this.font = new BitmapFont();
         this.font.setColor(Color.WHITE);
         this.font.getData().setScale(2.0f);
+        
+        // Pre-calculate text layouts for menu and game over screens
+        this.menuTitleLayout = new GlyphLayout(font, "ESCAPE THE MAZE");
+        this.menuInstructionsLayout = new GlyphLayout(font, "Press ENTER or TOUCH to start");
+        this.gameOverLayout = new GlyphLayout(font, "GAME OVER");
+        this.gameOverInstructionsLayout = new GlyphLayout(font, "Press ENTER or TOUCH to return to menu");
+        
         this.pigs = new ArrayList<>();
         this.trees = new ArrayList<>();
         this.woodBlocks = new ArrayList<>();
@@ -115,18 +126,14 @@ public class GameScreen implements Disposable {
         batch.begin();
         
         // Draw title
-        String title = "ESCAPE THE MAZE";
-        GlyphLayout titleLayout = new GlyphLayout(font, title);
-        float titleX = (Gdx.graphics.getWidth() - titleLayout.width) / 2;
+        float titleX = (Gdx.graphics.getWidth() - menuTitleLayout.width) / 2;
         float titleY = Gdx.graphics.getHeight() / 2 + 100;
-        font.draw(batch, title, titleX, titleY);
+        font.draw(batch, "ESCAPE THE MAZE", titleX, titleY);
         
         // Draw instructions
-        String instructions = "Press ENTER or TOUCH to start";
-        GlyphLayout instructionsLayout = new GlyphLayout(font, instructions);
-        float instructionsX = (Gdx.graphics.getWidth() - instructionsLayout.width) / 2;
+        float instructionsX = (Gdx.graphics.getWidth() - menuInstructionsLayout.width) / 2;
         float instructionsY = Gdx.graphics.getHeight() / 2 - 50;
-        font.draw(batch, instructions, instructionsX, instructionsY);
+        font.draw(batch, "Press ENTER or TOUCH to start", instructionsX, instructionsY);
         
         batch.end();
     }
@@ -300,18 +307,14 @@ public class GameScreen implements Disposable {
         batch.begin();
         
         // Draw game over text
-        String gameOver = "GAME OVER";
-        GlyphLayout gameOverLayout = new GlyphLayout(font, gameOver);
         float gameOverX = (Gdx.graphics.getWidth() - gameOverLayout.width) / 2;
         float gameOverY = Gdx.graphics.getHeight() / 2 + 100;
-        font.draw(batch, gameOver, gameOverX, gameOverY);
+        font.draw(batch, "GAME OVER", gameOverX, gameOverY);
         
         // Draw instructions
-        String instructions = "Press ENTER or TOUCH to return to menu";
-        GlyphLayout instructionsLayout = new GlyphLayout(font, instructions);
-        float instructionsX = (Gdx.graphics.getWidth() - instructionsLayout.width) / 2;
+        float instructionsX = (Gdx.graphics.getWidth() - gameOverInstructionsLayout.width) / 2;
         float instructionsY = Gdx.graphics.getHeight() / 2 - 50;
-        font.draw(batch, instructions, instructionsX, instructionsY);
+        font.draw(batch, "Press ENTER or TOUCH to return to menu", instructionsX, instructionsY);
         
         batch.end();
     }
