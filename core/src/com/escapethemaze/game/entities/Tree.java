@@ -27,8 +27,15 @@ public class Tree {
     }
     
     public void update(float delta) {
-        // Trees can regrow over time
-        // TODO: Implement tree growth logic
+        // Trees regrow over time if chopped
+        if (state > 0) {
+            createdTrees++;
+            // Regrow after 500 ticks (~8 seconds at 60fps)
+            if (createdTrees >= 500) {
+                state = Math.max(0, state - 1);
+                createdTrees = 0;
+            }
+        }
     }
     
     public void chop() {

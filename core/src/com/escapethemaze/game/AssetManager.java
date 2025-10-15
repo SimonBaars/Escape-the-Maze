@@ -19,6 +19,7 @@ public class AssetManager implements Disposable {
     public Texture[] fireImages;
     public Texture[] wallImages;
     public Texture[] craftingTableImages;
+    public Texture[][] wheatImages;
     public Texture[] buttonImages;
     public Texture[] textImages;
     public Texture[] pressButtonImages;
@@ -111,6 +112,14 @@ public class AssetManager implements Disposable {
         craftingTableImages[1] = loadTexture("craftingtable.png");
         craftingTableImages[2] = loadTexture("arrow.png");
         craftingTableImages[3] = loadTexture("arrow2.png");
+        
+        // Load wheat images (2 types x 8 growth stages)
+        wheatImages = new Texture[2][8];
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 8; j++) {
+                wheatImages[i][j] = loadTexture("wheat" + i + j + ".png");
+            }
+        }
         
         // Load other textures
         grassImage = loadTexture("grass.png");
