@@ -26,9 +26,9 @@ public class Wood {
             if (assetManager.fireImages[frame] != null) {
                 batch.draw(assetManager.fireImages[frame], x + cameraX - size, y + cameraY - size, size * 2, size * 2);
             }
+        } else if (assetManager.cobblestoneImage != null) {
+            batch.draw(assetManager.cobblestoneImage, x + cameraX - size, y + cameraY - size, size * 2, size * 2);
         }
-        // Draw wood block texture if not burning/crafting table
-        // TODO: Add wood block texture
     }
     
     public void update(float delta) {

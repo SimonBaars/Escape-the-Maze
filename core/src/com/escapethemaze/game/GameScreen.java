@@ -147,8 +147,20 @@ public class GameScreen implements Disposable {
     private void renderGame(SpriteBatch batch, float delta) {
         batch.begin();
         
-        // Draw background
-        // TODO: Draw maze walls and paths
+        // Draw background (grass texture)
+        if (game.getAssetManager().grassImage != null) {
+            int screenWidth = Gdx.graphics.getWidth();
+            int screenHeight = Gdx.graphics.getHeight();
+            int tileWidth = game.getAssetManager().grassImage.getWidth();
+            int tileHeight = game.getAssetManager().grassImage.getHeight();
+            
+            // Tile the grass texture across the visible screen
+            for (int x = -tileWidth; x < screenWidth + tileWidth; x += tileWidth) {
+                for (int y = -tileHeight; y < screenHeight + tileHeight; y += tileHeight) {
+                    batch.draw(game.getAssetManager().grassImage, x, y);
+                }
+            }
+        }
         
         // Draw entities
         if (player != null) {
@@ -167,9 +179,6 @@ public class GameScreen implements Disposable {
             wood.render(batch, game.getAssetManager(), cameraX, cameraY);
         }
         
-        // Draw UI
-        // TODO: Add health bar, inventory, etc.
-        
         batch.end();
         
         // Draw maze lines with ShapeRenderer
@@ -180,6 +189,17 @@ public class GameScreen implements Disposable {
             mazeGenerator.render(shapeRenderer, cameraX, cameraY);
         }
         shapeRenderer.end();
+        
+        // Draw chests on gates
+        batch.begin();
+        if (mazeGenerator != null) {
+            mazeGenerator.renderChests(batch, game.getAssetManager(), cameraX, cameraY);
+        }
+        
+        // Draw UI (health bar, inventory, etc.)
+        drawUI(batch);
+        
+        batch.end();
     }
     
     private void handleGameInput(float delta) {
@@ -322,6 +342,45 @@ public class GameScreen implements Disposable {
     private void handleGameOverInput() {
         if (Gdx.input.justTouched() || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             screen = 10; // Back to menu
+        }
+    }
+    
+    private void drawUI(SpriteBatch batch) {
+        if (player == null) return;
+        
+        int screenWidth = Gdx.graphics.getWidth();
+        int screenHeight = Gdx.graphics.getHeight();
+        int padding = 10;
+        int barWidth = 200;
+        int barHeight = 20;
+        
+        // Draw health bar background
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.DARK_GRAY);
+        shapeRenderer.rect(padding, screenHeight - padding - barHeight, barWidth, barHeight);
+        
+        // Draw health bar
+        float healthPercent = player.health / player.maxHealth;
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(padding, screenHeight - padding - barHeight, barWidth * healthPercent, barHeight);
+        
+        // Draw food bar background
+        shapeRenderer.setColor(Color.DARK_GRAY);
+        shapeRenderer.rect(padding, screenHeight - padding - barHeight * 2 - 5, barWidth, barHeight);
+        
+        // Draw food bar
+        float foodPercent = player.currentFood / player.maxFood;
+        shapeRenderer.setColor(Color.GREEN);
+        shapeRenderer.rect(padding, screenHeight - padding - barHeight * 2 - 5, barWidth * foodPercent, barHeight);
+        shapeRenderer.end();
+        
+        // Draw UI text
+        font.draw(batch, "Health: " + (int)player.health, padding + 5, screenHeight - padding - 3);
+        font.draw(batch, "Food: " + (int)player.currentFood, padding + 5, screenHeight - padding - barHeight - 8);
+        font.draw(batch, "Day: " + day, padding, screenHeight - padding - barHeight * 2 - 30);
+        
+        if (night) {
+            font.draw(batch, "NIGHT", screenWidth - 100, screenHeight - padding);
         }
     }
     

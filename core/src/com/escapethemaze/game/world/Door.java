@@ -1,6 +1,8 @@
 package com.escapethemaze.game.world;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.escapethemaze.game.AssetManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -34,6 +36,12 @@ public class Door {
     public void render(ShapeRenderer renderer, int cameraX, int cameraY) {
         for (Gate gate : gates) {
             gate.render(renderer, x, y, angle, cameraX, cameraY, tileSize);
+        }
+    }
+    
+    public void renderChests(SpriteBatch batch, AssetManager assetManager, int cameraX, int cameraY) {
+        for (Gate gate : gates) {
+            gate.renderChest(batch, assetManager, x, y, angle, cameraX, cameraY, tileSize);
         }
     }
     

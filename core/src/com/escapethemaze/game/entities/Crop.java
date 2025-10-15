@@ -17,8 +17,14 @@ public class Crop {
     }
     
     public void render(SpriteBatch batch, AssetManager assetManager, int cameraX, int cameraY) {
-        // TODO: Load wheat textures and render based on state
-        // Wheat textures are wheat00.png through wheat17.png (2 types x 8 states)
+        if (assetManager.wheatImages != null && type >= 0 && type < assetManager.wheatImages.length) {
+            if (state >= 0 && state < assetManager.wheatImages[type].length) {
+                Texture texture = assetManager.wheatImages[type][state];
+                if (texture != null) {
+                    batch.draw(texture, x + cameraX - size, y + cameraY - size, size * 2, size * 2);
+                }
+            }
+        }
     }
     
     public void update(float delta) {
